@@ -57,7 +57,16 @@ public class Pawn extends ChessPiece {
 
     @Override
     public void isPathFree(int ro, int co, int rd, int cd, ChessBoard board) throws NoPathFreeException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int dist_ro = Math.abs(rd - ro);
+        int dist_col = Math.abs(cd - co);
+        if(!board.canMoveTo(cd, rd, this.color)){
+                throw new  NoPathFreeException("Movement is not allowed as there is a piece in [" + rd + "," + cd + "]");
+        }
+        int sign_col = (int) Math.signum(cd-co);
+            // Not attacking, then can move 1 or two positions forward
+        if(dist_col==2 && !board.isEmpty(ro, co+sign_col)){
+            throw new  NoPathFreeException("Movement is not allowed as there is a piece in [" + rd + "," + cd + "]");
+        }
     }
 
 }

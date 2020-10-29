@@ -60,7 +60,16 @@ public class ChessBoard implements Board {
         setPiece(piece);
     }
     
-    private void setPiece(ChessPiece piece){
+    public void setPiece(ChessPiece piece){
         (this.chessboard[piece.getCol()][piece.getRow()]).setPiece(piece);
+    }
+    
+    public boolean isEmpty(int col, int row){
+        return (this.chessboard[col][row]).isEmpty();
+    }
+    
+    public boolean canMoveTo(int col, int row, ChessColour colour){
+        //Will return True if there is a piece of the different colour to kill or nothing in the determined cell
+        return (this.chessboard[col][row]).isEmpty() || colour!=(this.chessboard[col][row]).getColor();
     }
 }

@@ -10,5 +10,10 @@ package edu.upc.etsetb.arqsoft.multigame.server.chess.entities;
  * @author estev
  */
 public class NoPathFreeException extends Exception {
+
+    
+    public NoPathFreeException(String string) {
+        super(string);
+    }
     
 }

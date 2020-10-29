@@ -9,7 +9,7 @@ package edu.upc.etsetb.arqsoft.multigame.server.chess.entities;
  *
  * @author estev
  */
-public class Bishop  extends ChessPiece {
+public class Bishop extends ChessPiece {
 
     private int id;  // To identify which type of 
 
@@ -33,7 +33,7 @@ public class Bishop  extends ChessPiece {
     public void isPieceMovement(int ro, int co, int rd, int cd) throws NoPieceMovementException {
         int dist_ro = Math.abs(rd - ro);
         int dist_col = Math.abs(cd - co);
-        if ((dist_ro != dist_col) || ((dist_ro == 0) && (dist_col == 0)) ){
+        if ((dist_ro != dist_col) || ((dist_ro == 0) && (dist_col == 0))) {
             throw new NoPieceMovementException("Bishop has to move diagonally");
         }
 
@@ -41,7 +41,15 @@ public class Bishop  extends ChessPiece {
 
     @Override
     public void isPathFree(int ro, int co, int rd, int cd, ChessBoard board) throws NoPathFreeException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int dist_row = (int) Math.signum(ro - rd);
+        int dist_col = (int) Math.signum(co - cd);
+        for (int c = co; c != cd; c = c + dist_col) {
+            for (int r = ro; r != rd; r = r + dist_row) {
+                if ((c != co) && (r != ro) && (!board.isEmpty(c, r))) {
+                    throw new NoPathFreeException("Movement is not allowed as there is a piece in [" + r + "," + c + "]");
+                }
+            }
+        }
     }
 
 }

@@ -10,7 +10,8 @@ package edu.upc.etsetb.arqsoft.multigame.server.chess.entities;
  * @author estev
  */
 public class King extends ChessPiece {
-        private boolean hasMoved;
+
+    private boolean hasMoved;
 
     public King(ChessColour colour) {
         this.color = colour;
@@ -27,12 +28,12 @@ public class King extends ChessPiece {
     public void isPieceMovement(int ro, int co, int rd, int cd) throws NoPieceMovementException {
         int dist_ro = Math.abs(rd - ro);
         int dist_col = Math.abs(cd - co);
-        
-        if ((dist_ro*dist_col !=1) && (this.hasMoved)){
+
+        if ((dist_ro * dist_col != 1) && (this.hasMoved)) {
             throw new NoPieceMovementException("King can move more than one cell");
         }
-        
-        // CHECK ENROCKE FALTA ACABARRRRRR
+
+        // CHECK ENROCKE 
         if (!((!this.hasMoved) && ((dist_col == 3) || (dist_col == 4)))) {
             throw new NoPieceMovementException("Rook has to move linearly, without diagonals");
         }
@@ -40,6 +41,21 @@ public class King extends ChessPiece {
 
     @Override
     public void isPathFree(int ro, int co, int rd, int cd, ChessBoard board) throws NoPathFreeException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int dist_ro = Math.abs(rd - ro);
+        int dist_col = Math.abs(cd - co);
+        if ((dist_ro * dist_col != 1) && (this.hasMoved)) {
+            if (!board.canMoveTo(cd, rd, this.color)) {
+                throw new NoPathFreeException("Movement is not allowed as there is a piece in [" + rd + "," + cd + "]");
+            }
+        }
+
+        // CHECK ENROCKE 
+        if (!((!this.hasMoved) && ((dist_col == 3) || (dist_col == 4)))) {
+            for (int i = Math.min(co, cd); i < Math.max(co, cd); i++) {
+                if ((i != co) && (i != cd) && (!board.isEmpty(cd, rd))) {
+                    throw new NoPathFreeException("Movement is not allowed as there is a piece in [" + ro + "," + i + "]");
+                }
+            }
+        }
     }
 }

@@ -40,9 +40,17 @@ public class ChessCell implements Cell {
         this.piece = piece;
     }
 
+    public boolean isEmpty() {
+        return isEmpty;
+    }
+
     public void setPiece(ChessPiece piece) {
         this.piece = piece;
         this.isEmpty = false;
+    }
+
+    public ChessColour getColor() {
+        return color;
     }
     
 }

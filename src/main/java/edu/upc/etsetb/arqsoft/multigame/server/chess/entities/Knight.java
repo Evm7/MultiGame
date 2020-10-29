@@ -40,6 +40,8 @@ public class Knight extends ChessPiece {
 
     @Override
     public void isPathFree(int ro, int co, int rd, int cd, ChessBoard board) throws NoPathFreeException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (!board.canMoveTo(cd, rd, this.color)){
+            throw new NoPathFreeException("Movement is not allowed as there is a piece in [" + rd + "," + cd + "]");
+        }
     }
 }
