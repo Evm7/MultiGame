@@ -15,6 +15,18 @@ public abstract class ChessPiece implements Piece {
     protected int row, col;
     protected ChessColour color;
     protected boolean isAlive; // True for Alive and False for Dead
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getCol() {
+        return col;
+    }
+
+    public ChessColour getColor() {
+        return color;
+    }
     
     @Override
     public abstract void isPieceMovement(int ro, int co, int rd, int cd) throws NoPieceMovementException;
