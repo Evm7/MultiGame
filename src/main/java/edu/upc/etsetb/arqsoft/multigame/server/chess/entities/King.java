@@ -33,12 +33,7 @@ public class King extends ChessPiece {
         }
         
         // CHECK ENROCKE FALTA ACABARRRRRR
-        if (((dist_ro != 0) && (dist_col != 0)) || ((dist_ro == 0) && (dist_col == 0))) {
-                if (this.hasMoved) {
-                    //
-                }
-            }
-{
+        if (!((!this.hasMoved) && ((dist_col == 3) || (dist_col == 4)))) {
             throw new NoPieceMovementException("Rook has to move linearly, without diagonals");
         }
     }
