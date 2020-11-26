@@ -29,12 +29,12 @@ public class King extends ChessPiece {
         int dist_ro = Math.abs(rd - ro);
         int dist_col = Math.abs(cd - co);
 
-        if ((dist_ro * dist_col != 1) && (this.hasMoved)) {
+        if ((dist_ro>1 || dist_col >1) && (this.hasMoved)) {
             throw new NoPieceMovementException("King can move more than one cell");
         }
 
         // CHECK ENROCKE 
-        if (!((!this.hasMoved) && ((dist_col == 3) || (dist_col == 4)))) {
+        if ((!this.hasMoved) && !((dist_ro == 0) && ((dist_col == 3) || (dist_col == 4) || (dist_col == 1))) && !((dist_ro == 1 || dist_col<2)))  {
             throw new NoPieceMovementException("Rook has to move linearly, without diagonals");
         }
     }

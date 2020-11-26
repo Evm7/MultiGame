@@ -13,7 +13,7 @@ import org.junit.runners.Suite;
  * @author estev
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({BishopTest.class, RookTest.class})
+@Suite.SuiteClasses({BishopTest.class, RookTest.class, QueenTest.class})
 
 public class PiecesTestSuite {
 }
