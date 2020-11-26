@@ -28,7 +28,7 @@ public class Queen extends ChessPiece {
         int dist_col = Math.abs(cd - co);
         if ((dist_ro == 0) && (dist_col == 0)) {
             throw new NoPieceMovementException("Queen movement has to implie displacement");
-        } else if ((dist_col != dist_ro) && (dist_ro != 0) || (dist_col != 0)) {
+        } else if ((dist_col != dist_ro) && ((dist_ro != 0) && (dist_col != 0))) {
             throw new NoPieceMovementException("Queen movement has to implie linear displacement");
         }
 
