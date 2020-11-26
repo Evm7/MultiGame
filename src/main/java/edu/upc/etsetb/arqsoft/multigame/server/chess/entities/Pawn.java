@@ -28,10 +28,10 @@ public class Pawn extends ChessPiece {
 
     @Override
     public void isPieceMovement(int ro, int co, int rd, int cd) throws NoPieceMovementException {
-        if ((this.color == ChessColour.WHITE) && (ro < rd)) {
-            throw new NoPieceMovementException("Pawn can not backwards");
-        } else if ((this.color == ChessColour.BLACK) && (ro > rd)) {
-            throw new NoPieceMovementException("Pawn can not backwards");
+        if ((this.color == ChessColour.WHITE) && (ro > rd)) {
+            throw new NoPieceMovementException("Pawn can not move backwards");
+        } else if ((this.color == ChessColour.BLACK) && (ro < rd)) {
+            throw new NoPieceMovementException("Pawn can not move backwards");
         } else {
             int dist_ro = Math.abs(rd - ro);
             if (co != cd) {

@@ -108,6 +108,12 @@ public class BishopTest {
         this.instance.isPieceMovement(ro, co, rd, cd);
     }
 
+    @Test
+    public void testConstructorAndGetColorOK() throws Exception {
+        System.out.println("[INFO[ ...Testing constructor and getColor(): OK");
+        Assert.assertEquals(ChessColour.BLACK, this.instance.getColor());
+    }
+
     /**
      * Test of isPathFree method, of class Bishop.
      */
@@ -123,12 +129,6 @@ public class BishopTest {
         instance.isPathFree(ro, co, rd, cd, board);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
-    }
-
-    @Test
-    public void testConstructorAndGetColorOK() throws Exception {
-        System.out.println("[INFO[ ...Testing constructor and getColor(): OK");
-        Assert.assertEquals(ChessColour.BLACK, this.instance.getColor());
     }
 
 }
